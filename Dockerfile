@@ -1,4 +1,4 @@
-FROM node:10.1.0-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -10,4 +10,7 @@ RUN yarn install --production && yarn cache clean
 COPY . /app
 
 ENV NODE_ENV production
-ENTRYPOINT ["node", "-r", "esm", "./bin/server"]
+EXPOSE 80
+
+CMD ["node", "./bin/server", "--port", "80"]
+
